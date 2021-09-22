@@ -107,7 +107,7 @@ var Ennemy = function(name, color, position, direction) {
 };
 
 Ennemy.prototype.dead = function () {
-    this.graphic.position.z = this.graphic.position.z-0.1;
+    scene.remove(this.graphic);
 }
 
 Ennemy.prototype.accelerate = function (distance) {

@@ -37,6 +37,7 @@ function collisions()
     bullet_collision();
     player_collision();
     player_falling();
+    bullet_hit_ennemy();
 }
 
 function bullet_collision()
@@ -99,5 +100,23 @@ function player_falling()
            return;
         }
     }
+}
 
+function bullet_hit_ennemy() {
+    last_bullet = player1.bullets.length - 1;
+    if (last_bullet >= 0)
+    {
+        bullet_x = player1.bullets[last_bullet].position.x;
+        bullet_y = player1.bullets[last_bullet].position.y;
+        ennemy1_x = ennemy1.graphic.position.x;
+        ennemy1_y = ennemy1.graphic.position.y;
+
+        if (bullet_x >= ennemy1_x - 16 && bullet_x <= ennemy1_x + 16
+            && bullet_y >= ennemy1_y - 10 && bullet_y <= ennemy1_y + 10)
+        {
+            ennemy1.dead();
+            scene.remove(player1.bullets[last_bullet]);
+            player1.bullets.splice(last_bullet, 1);
+        }
+    }
 }
